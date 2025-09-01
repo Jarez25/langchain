@@ -2,7 +2,8 @@ from langchain_ollama import ChatOllama
 from langchain.schema import HumanMessage, SystemMessage
 
 # Inicializar el modelo Ollama
-llm = ChatOllama(model="deepseek-r1:latest")
+llm = ChatOllama(model="gpt-oss:20b")
+
 
 def preguntar(pregunta):
     mensaje = [
@@ -11,6 +12,7 @@ def preguntar(pregunta):
     ]
     respuesta = llm.invoke(mensaje)
     return respuesta.content
+
 
 if __name__ == "__main__":
     while True:

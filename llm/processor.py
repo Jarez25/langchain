@@ -26,7 +26,7 @@ def procesar_llm(detecciones):
     try:
         final_prompt = prompt.format(detecciones=detecciones)
         respuesta = llm.invoke(final_prompt)
-        print("🤖 Resumen IA:", respuesta.content)
+        print(" Resumen IA:", respuesta.content)
     except Exception as e:
         print(f"Error en LLM: {e}")
 
