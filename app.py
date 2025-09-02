@@ -3,6 +3,8 @@ from detection.camara import init_camera
 from detection.image_utils import mejorar_calidad_imagen
 from detection.yolo_detector import detectar, extraer_labels
 from llm.processor import enviar_detecciones
+from imagenes.guardar import guardar_foto  # 👈 importamos la función
+
 
 def main():
     cap = init_camera()
@@ -21,6 +23,10 @@ def main():
         annotated_frame = results[0].plot()
         annotated_frame = cv2.resize(annotated_frame, (1280, 720))
 
+        # Si detecta persona, guardar foto
+        if "person" in labels:
+            guardar_foto(frame)
+
         cv2.imshow("Detecciones YOLO + LLM", annotated_frame)
 
         enviar_detecciones(labels)
@@ -30,6 +36,7 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     main()
